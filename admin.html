@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Casa Aura | Admin</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: #f5f2eb;
+      font-family: "Montserrat", sans-serif;
+      min-height: 100vh;
+    }
+
+    :root {
+      --gold: #d4af37;
+      --gold-light: #e7ca72;
+      --panel: #121212;
+      --border: #292929;
+      --muted: #999;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* LOGIN */
+
+    #loginScreen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 430px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 45px 38px;
+      text-align: center;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: 5px;
+      font-size: 27px;
+      margin-bottom: 5px;
+    }
+
+    .brand span {
+      display: block;
+      font-family: "Montserrat", sans-serif;
+      font-size: 9px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      margin-top: 5px;
+    }
+
+    .login-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 32px;
+      font-weight: 500;
+      margin: 40px 0 25px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      background: #0b0b0b;
+      border: 1px solid var(--border);
+      color: white;
+      padding: 14px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 13px;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--gold);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .field {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .field label {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: #aaa;
+      margin-bottom: 7px;
+      text-transform: uppercase;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .gold-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--gold);
+      color: #090909;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-top: 8px;
+    }
+
+    .gold-btn:hover {
+      background: var(--gold-light);
+    }
+
+    .error {
+      color: #e87878;
+      font-size: 12px;
+      margin-top: 15px;
+      line-height: 1.5;
+    }
+
+    /* DASHBOARD */
+
+    #dashboard {
+      min-height: 100vh;
+    }
+
+    header {
+      height: 76px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 35px;
+      background: #0d0d0d;
+    }
+
+    .header-brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
+      letter-spacing: 4px;
+    }
+
+    .header-brand span {
+      color: var(--gold);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .admin-email {
+      color: #999;
+      font-size: 11px;
+    }
+
+    .logout {
+      color: var(--gold);
+      background: transparent;
+      border: 1px solid var(--gold);
+      padding: 9px 16px;
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    main {
+      max-width: 1400px;
+      margin: auto;
+      padding: 45px 35px 80px;
+    }
+
+    .dashboard-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 35px;
+    }
+
+    .dashboard-heading h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 42px;
+      font-weight: 500;
+    }
+
+    .dashboard-heading p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .add-btn {
+      background: var(--gold);
+      color: #080808;
+      padding: 13px 22px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    /* PRODUCTS */
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .product-image {
+      height: 280px;
+      background: #151515;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 25px;
+    }
+
+    .no-image {
+      color: #555;
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-brand {
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .product-name {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 26px;
+      margin-top: 5px;
+    }
+
+    .status {
+      display: inline-block;
+      font-size: 9px;
+      letter-spacing: 1px;
+      padding: 5px 8px;
+      margin-top: 12px;
+    }
+
+    .published {
+      background: #173d27;
+      color: #82d39c;
+    }
+
+    .draft {
+      background: #302c1c;
+      color: #d9bd60;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .edit-btn,
+    .delete-btn {
+      flex: 1;
+      padding: 10px;
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    .edit-btn {
+      background: #252525;
+      color: white;
+    }
+
+    .delete-btn {
+      background: transparent;
+      border: 1px solid #633;
+      color: #e88888;
+    }
+
+    .empty {
+      border: 1px dashed var(--border);
+      padding: 70px 20px;
+      text-align: center;
+      color: #777;
+    }
+
+    /* MODAL */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.82);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 1000;
+      overflow-y: auto;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 800px;
+      background: #111;
+      border: 1px solid var(--border);
+      padding: 35px;
+      margin: 30px 0;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .modal-header h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 34px;
+      font-weight: 500;
+    }
+
+    .close {
+      background: transparent;
+      color: #aaa;
+      font-size: 25px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .image-preview {
+      margin-top: 12px;
+      width: 160px;
+      height: 160px;
+      background: #181818;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-preview img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .sizes-section {
+      margin-top: 30px;
+      border-top: 1px solid var(--border);
+      padding-top: 25px;
+    }
+
+    .sizes-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
+      margin-bottom: 15px;
+    }
+
+    .size-row {
+      display: grid;
+      grid-template-columns: 100px 1fr 1fr 40px;
+      gap: 10px;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .size-row input {
+      padding: 11px;
+    }
+
+    .remove-size {
+      background: transparent;
+      color: #d66;
+      font-size: 18px;
+    }
+
+    .add-size {
+      color: var(--gold);
+      background: transparent;
+      font-size: 11px;
+      letter-spacing: 1px;
+      margin-top: 5px;
+    }
+
+    .form-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 30px;
+      padding-top: 25px;
+      border-top: 1px solid var(--border);
+    }
+
+    .publish-toggle {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    .publish-toggle input {
+      width: auto;
+    }
+
+    .save-btn {
+      background: var(--gold);
+      color: #080808;
+      padding: 14px 28px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .loading {
+      text-align: center;
+      color: #888;
+      padding: 50px;
+    }
+
+    @media (max-width: 700px) {
+      header {
+        padding: 0 18px;
+      }
+
+      .admin-email {
+        display: none;
+      }
+
+      main {
+        padding: 30px 18px 60px;
+      }
+
+      .dashboard-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .dashboard-heading h1 {
+        font-size: 36px;
+      }
+
+      .add-btn {
+        width: 100%;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .full {
+        grid-column: auto;
+      }
+
+      .modal-box {
+        padding: 25px 18px;
+      }
+
+      .size-row {
+        grid-template-columns: 70px 1fr 1fr 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LOGIN -->
+  <section id="loginScreen">
+
+    <div class="login-box">
+
+      <div class="brand">
+        CASA AURA
+        <span>FRAGRANCES</span>
+      </div>
+
+      <h1 class="login-title">Admin Access</h1>
+
+      <form id="loginForm">
+
+        <div class="field">
+          <label>Email</label>
+          <input
+            type="email"
+            id="loginEmail"
+            required
+            autocomplete="email"
+          >
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <input
+            type="password"
+            id="loginPassword"
+            required
+            autocomplete="current-password"
+          >
+        </div>
+
+        <button class="gold-btn" type="submit">
+          SIGN IN
+        </button>
+
+        <div id="loginError" class="error"></div>
+
+      </form>
+
+    </div>
+
+  </section>
+
+
+  <!-- DASHBOARD -->
+  <section id="dashboard" class="hidden">
+
+    <header>
+
+      <div class="header-brand">
+        CASA <span>AURA</span>
+      </div>
+
+      <div class="header-right">
+        <div id="adminEmail" class="admin-email"></div>
+
+        <button class="logout" onclick="logout()">
+          SIGN OUT
+        </button>
+      </div>
+
+    </header>
+
+
+    <main>
+
+      <div class="dashboard-heading">
+
+        <div>
+          <h1>Fragrance Collection</h1>
+          <p>Manage your Casa Aura products, inventory and pricing.</p>
+        </div>
+
+        <button class="add-btn" onclick="openAddProduct()">
+          + ADD FRAGRANCE
+        </button>
+
+      </div>
+
+
+      <div id="productsContainer" class="products-grid">
+        <div class="loading">
+          Loading collection...
+        </div>
+      </div>
+
+    </main>
+
+  </section>
+
+
+  <!-- PRODUCT MODAL -->
+  <div id="productModal" class="modal hidden">
+
+    <div class="modal-box">
+
+      <div class="modal-header">
+
+        <h2 id="modalTitle">
+          Add Fragrance
+        </h2>
+
+        <button class="close" onclick="closeModal()">
+          ×
+        </button>
+
+      </div>
+
+
+      <form id="productForm">
+
+        <input type="hidden" id="productId">
+
+        <div class="form-grid">
+
+          <div class="field">
+            <label>Brand</label>
+            <input id="brand" required placeholder="Louis Vuitton">
+          </div>
+
+          <div class="field">
+            <label>Fragrance Name</label>
+            <input id="name" required placeholder="Imagination">
+          </div>
+
+          <div class="field">
+            <label>Category</label>
+            <select id="category">
+              <option>Unisex</option>
+              <option>Designer</option>
+              <option>Niche</option>
+              <option>Men</option>
+              <option>Women</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Slug</label>
+            <input id="slug" required placeholder="louis-vuitton-imagination">
+          </div>
+
+          <div class="field full">
+            <label>Description</label>
+            <textarea id="description" placeholder="Describe the fragrance..."></textarea>
+          </div>
+
+          <div class="field full">
+            <label>Notes</label>
+            <input id="notes" placeholder="Citrus, amber, tea, woods">
+          </div>
+
+          <div class="field full">
+            <label>Bottle Image</label>
+
+            <input
+              type="file"
+              id="imageFile"
+              accept="image/jpeg,image/png,image/webp"
+            >
+
+            <div id="imagePreview" class="image-preview hidden">
+              <img id="previewImg" src="" alt="">
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="sizes-section">
+
+          <div class="sizes-title">
+            Sizes, Prices & Inventory
+          </div>
+
+          <div id="sizesContainer"></div>
+
+          <button
+            type="button"
+            class="add-size"
+            onclick="addSizeRow()"
+          >
+            + ADD SIZE
+          </button>
+
+        </div>
+
+
+        <div class="form-bottom">
+
+          <label class="publish-toggle">
+            <input type="checkbox" id="published">
+            Publish product
+          </label>
+
+          <button class="save-btn" type="submit">
+            SAVE FRAGRANCE
+          </button>
+
+        </div>
+
+        <div id="formError" class="error"></div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+<script type="module">
+
+  import {
+    createClient
+  } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+
+  /*
+   * ============================================================
+   * CASA AURA SUPABASE CONNECTION
+   * ============================================================
+   */
+
+  const SUPABASE_URL = "https://tmxpuurukwgeckpgfdhm.supabase.co";
+
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_pyRgGZxtK_Hbi5DirVLLiA_IkxXdHq_";
+
+
+  const supabase = createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+
+  /*
+   * ============================================================
+   * GLOBAL STATE
+   * ============================================================
+   */
+
+  let products = [];
+
+  const availableSizes = [
+    3,
+    5,
+    10,
+    20,
+    30,
+    50,
+    100
+  ];
+
+
+  /*
+   * ============================================================
+   * AUTH
+   * ============================================================
+   */
+
+  async function checkSession() {
+
+    const {
+      data: {
+        session
+      }
+    } = await supabase.auth.getSession();
+
+
+    if (!session) {
+      showLogin();
+      return;
+    }
+
+
+    const isAdmin =
+      await checkAdmin(session.user.id);
+
+
+    if (!isAdmin) {
+
+      await supabase.auth.signOut();
+
+      showLogin();
+
+      document.getElementById("loginError").textContent =
+        "This account is not authorized to access the Casa Aura admin.";
+
+      return;
+    }
+
+
+    showDashboard(session.user);
+
+  }
+
+
+  async function checkAdmin(userId) {
+
+    const {
+      data,
+      error
+    } = await supabase
+      .from("admin_users")
+      .select("user_id")
+      .eq("user_id", userId)
+      .maybeSingle();
+
+
+    if (error) {
+
+      console.error(error);
+
+      return false;
+
+    }
+
+
+    return !!data;
+
+  }
+
+
+  function showLogin() {
+
+    document
+      .getElementById("loginScreen")
+      .classList.remove("hidden");
+
+    document
+      .getElementById("dashboard")
+      .classList.add("hidden");
+
+  }
+
+
+  function showDashboard(user) {
+
+    document
+      .getElementById("loginScreen")
+      .classList.add("hidden");
+
+    document
+      .getElementById("dashboard")
+      .classList.remove("hidden");
+
+    document
+      .getElementById("adminEmail")
+      .textContent = user.email || "";
+
+    loadProducts();
+
+  }
+
+
+  document
+    .getElementById("loginForm")
+    .addEventListener("submit", async function(e) {
+
+      e.preventDefault();
+
+
+      const email =
+        document.getElementById("loginEmail").value.trim();
+
+      const password =
+        document.getElementById("loginPassword").value;
+
+
+      const errorBox =
+        document.getElementById("loginError");
+
+
+      errorBox.textContent = "Signing in...";
+
+
+      const {
+        data,
+        error
+      } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+
+
+      if (error) {
+
+        errorBox.textContent = error.message;
+
+        return;
+
+      }
+
+
+      const isAdmin =
+        await checkAdmin(data.user.id);
+
+
+      if (!isAdmin) {
+
+        await supabase.auth.signOut();
+
+        errorBox.textContent =
+          "This account is not authorized as an admin.";
+
+        return;
+
+      }
+
+
+      errorBox.textContent = "";
+
+      showDashboard(data.user);
+
+    });
+
+
+  window.logout = async function() {
+
+    await supabase.auth.signOut();
+
+    showLogin();
+
+  };
+
+
+  /*
+   * ============================================================
+   * LOAD PRODUCTS
+   * ============================================================
+   */
+
+  async function loadProducts() {
+
+    const container =
+      document.getElementById("productsContainer");
+
+
+    container.innerHTML =
+      '<div class="loading">Loading collection...</div>';
+
+
+    const {
+      data,
+      error
+    } = await supabase
+      .from("products")
+      .select(`
+        *,
+        product_sizes (
+          id,
+          size_ml,
+          price,
+          inventory
+        )
+      `)
+      .order("created_at", {
+        ascending: false
+      });
+
+
+    if (error) {
+
+      console.error(error);
+
+      container.innerHTML =
+        '<div class="empty">Unable to load products.</div>';
+
+      return;
+
+    }
+
+
+    products = data || [];
+
+    renderProducts();
+
+  }
+
+
+  function renderProducts() {
+
+    const container =
+      document.getElementById("productsContainer");
+
+
+    if (!products.length) {
+
+      container.innerHTML = `
+        <div class="empty">
+          <div style="font-family:Cormorant Garamond;font-size:30px;margin-bottom:10px;">
+            Your collection is empty
+          </div>
+          <div>
+            Click "Add Fragrance" to create your first product.
+          </div>
+        </div>
+      `;
+
+      return;
+
+    }
+
+
+    container.innerHTML =
+      products.map(product => {
+
+        const statusClass =
+          product.published
+            ? "published"
+            : "draft";
+
+
+        const statusText =
+          product.published
+            ? "PUBLISHED"
+            : "DRAFT";
+
+
+        return `
+
+          <div class="product-card">
+
+            <div class="product-image">
+
+              ${
+                product.image_url
+
+                ?
+
+                `<img
+                  src="${escapeHtml(product.image_url)}"
+                  alt="${escapeHtml(product.name)}"
+                >`
+
+                :
+
+                `<div class="no-image">
+                  NO IMAGE
+                </div>`
+              }
+
+            </div>
+
+
+            <div class="product-info">
+
+              <div class="product-brand">
+                ${escapeHtml(product.brand)}
+              </div>
+
+              <div class="product-name">
+                ${escapeHtml(product.name)}
+              </div>
+
+              <span class="status ${statusClass}">
+                ${statusText}
+              </span>
+
+
+              <div class="card-actions">
+
+                <button
+                  class="edit-btn"
+                  onclick="editProduct('${product.id}')"
+                >
+                  EDIT
+                </button>
+
+                <button
+                  class="delete-btn"
+                  onclick="deleteProduct('${product.id}')"
+                >
+                  DELETE
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }).join("");
+
+  }
+
+
+  /*
+   * ============================================================
+   * ADD PRODUCT
+   * ============================================================
+   */
+
+  window.openAddProduct = function() {
+
+    document
+      .getElementById("productForm")
+      .reset();
+
+
+    document
+      .getElementById("productId")
+      .value = "";
+
+
+    document
+      .getElementById("modalTitle")
+      .textContent = "Add Fragrance";
+
+
+    document
+      .getElementById("imagePreview")
+      .classList.add("hidden");
+
+
+    document
+      .getElementById("sizesContainer")
+      .innerHTML = "";
+
+
+    addSizeRow(3);
+
+    addSizeRow(5);
+
+    addSizeRow(10);
+
+
+    document
+      .getElementById("productModal")
+      .classList.remove("hidden");
+
+  };
+
+
+  /*
+   * ============================================================
+   * EDIT PRODUCT
+   * ============================================================
+   */
+
+  window.editProduct = function(productId) {
+
+    const product =
+      products.find(p => p.id === productId);
+
+
+    if (!product) return;
+
+
+    document
+      .getElementById("productId")
+      .value = product.id;
+
+
+    document
+      .getElementById("brand")
+      .value = product.brand || "";
+
+
+    document
+      .getElementById("name")
+      .value = product.name || "";
+
+
+    document
+      .getElementById("category")
+      .value = product.category || "Unisex";
+
+
+    document
+      .getElementById("slug")
+      .value = product.slug || "";
+
+
+    document
+      .getElementById("description")
+      .value = product.description || "";
+
+
+    document
+      .getElementById("notes")
+      .value = product.notes || "";
+
+
+    document
+      .getElementById("published")
+      .checked = !!product.published;
+
+
+    document
+      .getElementById("sizesContainer")
+      .innerHTML = "";
+
+
+    (product.product_sizes || [])
+      .sort((a,b) => a.size_ml - b.size_ml)
+      .forEach(size => {
+
+        addSizeRow(
+          size.size_ml,
+          size.price,
+          size.inventory
+        );
+
+      });
+
+
+    if (product.image_url) {
+
+      document
+        .getElementById("previewImg")
+        .src = product.image_url;
+
+      document
+        .getElementById("imagePreview")
+        .classList.remove("hidden");
+
+    } else {
+
+      document
+        .getElementById("imagePreview")
+        .classList.add("hidden");
+
+    }
+
+
+    document
+      .getElementById("imageFile")
+      .value = "";
+
+
+    document
+      .getElementById("modalTitle")
+      .textContent = "Edit Fragrance";
+
+
+    document
+      .getElementById("productModal")
+      .classList.remove("hidden");
+
+  };
+
+
+  /*
+   * ============================================================
+   * SIZE ROWS
+   * ============================================================
+   */
+
+  window.addSizeRow = function(
+    size = "",
+    price = "",
+    inventory = ""
+  ) {
+
+    const container =
+      document.getElementById("sizesContainer");
+
+
+    const row =
+      document.createElement("div");
+
+
+    row.className = "size-row";
+
+
+    row.innerHTML = `
+
+      <input
+        type="number"
+        class="size-ml"
+        placeholder="mL"
+        value="${size}"
+        min="1"
+      >
+
+      <input
+        type="number"
+        class="size-price"
+        placeholder="Price"
+        value="${price}"
+        min="0"
+        step="0.01"
+      >
+
+      <input
+        type="number"
+        class="size-inventory"
+        placeholder="Inventory"
+        value="${inventory}"
+        min="0"
+      >
+
+      <button
+        type="button"
+        class="remove-size"
+      >
+        ×
+      </button>
+
+    `;
+
+
+    row
+      .querySelector(".remove-size")
+      .addEventListener("click", () => {
+        row.remove();
+      });
+
+
+    container.appendChild(row);
+
+  };
+
+
+  /*
+   * ============================================================
+   * IMAGE PREVIEW
+   * ============================================================
+   */
+
+  document
+    .getElementById("imageFile")
+    .addEventListener("change", function() {
+
+      const file = this.files[0];
+
+
+      if (!file) return;
+
+
+      const url =
+        URL.createObjectURL(file);
+
+
+      document
+        .getElementById("previewImg")
+        .src = url;
+
+
+      document
+        .getElementById("imagePreview")
+        .classList.remove("hidden");
+
+    });
+
+
+  /*
+   * ============================================================
+   * SAVE PRODUCT
+   * ============================================================
+   */
+
+  document
+    .getElementById("productForm")
+    .addEventListener("submit", async function(e) {
+
+      e.preventDefault();
+
+
+      const errorBox =
+        document.getElementById("formError");
+
+
+      errorBox.textContent = "";
+
+
+      const productId =
+        document.getElementById("productId").value;
+
+
+      const brand =
+        document.getElementById("brand").value.trim();
+
+
+      const name =
+        document.getElementById("name").value.trim();
+
+
+      const category =
+        document.getElementById("category").value;
+
+
+      const slug =
+        document.getElementById("slug").value.trim();
+
+
+      const description =
+        document.getElementById("description").value.trim();
+
+
+      const notes =
+        document.getElementById("notes").value.trim();
+
+
+      const published =
+        document.getElementById("published").checked;
+
+
+      const rows =
+        [...document.querySelectorAll(".size-row")];
+
+
+      const sizes =
+        rows.map(row => ({
+
+          size_ml:
+            Number(
+              row.querySelector(".size-ml").value
+            ),
+
+          price:
+            Number(
+              row.querySelector(".size-price").value
+            ),
+
+          inventory:
+            Number(
+              row.querySelector(".size-inventory").value
+            )
+
+        }));
+
+
+      if (!sizes.length) {
+
+        errorBox.textContent =
+          "Please add at least one size.";
+
+        return;
+
+      }
+
+
+      for (const size of sizes) {
+
+        if (!availableSizes.includes(size.size_ml)) {
+
+          errorBox.textContent =
+            "Sizes must be 3, 5, 10, 20, 30, 50 or 100 mL.";
+
+          return;
+
+        }
+
+
+        if (
+          !Number.isFinite(size.price) ||
+          size.price < 0
+        ) {
+
+          errorBox.textContent =
+            "Please enter valid prices.";
+
+          return;
+
+        }
+
+
+        if (
+          !Number.isInteger(size.inventory) ||
+          size.inventory < 0
+        ) {
+
+          errorBox.textContent =
+            "Inventory must be a whole number.";
+
+          return;
+
+        }
+
+      }
+
+
+      const duplicateSizes =
+        new Set(sizes.map(s => s.size_ml));
+
+
+      if (
+        duplicateSizes.size !== sizes.length
+      ) {
+
+        errorBox.textContent =
+          "Each size can only be added once.";
+
+        return;
+
+      }
+
+
+      const saveButton =
+        document.querySelector(".save-btn");
+
+
+      saveButton.disabled = true;
+
+      saveButton.textContent = "SAVING...";
+
+
+      try {
+
+        /*
+         * Upload image if one was selected
+         */
+
+        let imageUrl = null;
+
+
+        const existingProduct =
+          productId
+            ? products.find(p => p.id === productId)
+            : null;
+
+
+        imageUrl =
+          existingProduct?.image_url || null;
+
+
+        const imageFile =
+          document.getElementById("imageFile").files[0];
+
+
+        if (imageFile) {
+
+          const extension =
+            imageFile.name
+              .split(".")
+              .pop()
+              .toLowerCase();
+
+
+          const fileName =
+            `products/${crypto.randomUUID()}.${extension}`;
+
+
+          const {
+            error: uploadError
+          } = await supabase
+            .storage
+            .from("product-images")
+            .upload(
+              fileName,
+              imageFile,
+              {
+                cacheControl: "3600",
+                upsert: false,
+                contentType: imageFile.type
+              }
+            );
+
+
+          if (uploadError)
+            throw uploadError;
+
+
+          const {
+            data: publicUrlData
+          } =
+            supabase
+              .storage
+              .from("product-images")
+              .getPublicUrl(fileName);
+
+
+          imageUrl =
+            publicUrlData.publicUrl;
+
+        }
+
+
+        /*
+         * Save product
+         */
+
+        const productData = {
+
+          brand,
+
+          name,
+
+          category,
+
+          slug,
+
+          description: description || null,
+
+          notes: notes || null,
+
+          image_url: imageUrl,
+
+          published,
+
+          updated_at:
+            new Date().toISOString()
+
+        };
+
+
+        let savedProduct;
+
+
+        if (productId) {
+
+          const {
+            data,
+            error
+          } = await supabase
+            .from("products")
+            .update(productData)
+            .eq("id", productId)
+            .select()
+            .single();
+
+
+          if (error)
+            throw error;
+
+
+          savedProduct = data;
+
+
+          /*
+           * Remove existing size records
+           */
+
+          const {
+            error: deleteSizeError
+          } = await supabase
+            .from("product_sizes")
+            .delete()
+            .eq("product_id", productId);
+
+
+          if (deleteSizeError)
+            throw deleteSizeError;
+
+
+        } else {
+
+          const {
+            data,
+            error
+          } = await supabase
+            .from("products")
+            .insert(productData)
+            .select()
+            .single();
+
+
+          if (error)
+            throw error;
+
+
+          savedProduct = data;
+
+        }
+
+
+        /*
+         * Save sizes
+         */
+
+        const sizeRows =
+          sizes.map(size => ({
+
+            product_id:
+              savedProduct.id,
+
+            size_ml:
+              size.size_ml,
+
+            price:
+              size.price,
+
+            inventory:
+              size.inventory
+
+          }));
+
+
+        const {
+          error: sizeInsertError
+        } = await supabase
+          .from("product_sizes")
+          .insert(sizeRows);
+
+
+        if (sizeInsertError)
+          throw sizeInsertError;
+
+
+        closeModal();
+
+        await loadProducts();
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+        errorBox.textContent =
+          error.message ||
+          "Something went wrong while saving.";
+
+      }
+
+      finally {
+
+        saveButton.disabled = false;
+
+        saveButton.textContent =
+          "SAVE FRAGRANCE";
+
+      }
+
+    });
+
+
+  /*
+   * ============================================================
+   * DELETE PRODUCT
+   * ============================================================
+   */
+
+  window.deleteProduct = async function(productId) {
+
+    const product =
+      products.find(p => p.id === productId);
+
+
+    if (!product) return;
+
+
+    const confirmed =
+      confirm(
+        `Delete "${product.brand} ${product.name}"? This cannot be undone.`
+      );
+
+
+    if (!confirmed)
+      return;
+
+
+    const {
+      error
+    } = await supabase
+      .from("products")
+      .delete()
+      .eq("id", productId);
+
+
+    if (error) {
+
+      alert(error.message);
+
+      return;
+
+    }
+
+
+    await loadProducts();
+
+  };
+
+
+  /*
+   * ============================================================
+   * MODAL
+   * ============================================================
+   */
+
+  window.closeModal = function() {
+
+    document
+      .getElementById("productModal")
+      .classList.add("hidden");
+
+  };
+
+
+  document
+    .getElementById("productModal")
+    .addEventListener("click", function(e) {
+
+      if (e.target === this) {
+
+        closeModal();
+
+      }
+
+    });
+
+
+  /*
+   * ============================================================
+   * HTML ESCAPING
+   * ============================================================
+   */
+
+  function escapeHtml(value) {
+
+    return String(value ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  }
+
+
+  /*
+   * ============================================================
+   * START
+   * ============================================================
+   */
+
+  checkSession();
+
+</script>
+
+</body>
+</html>

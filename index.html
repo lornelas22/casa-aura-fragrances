@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Casa Aura Fragrances | Luxury Fragrance Decants</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #090909;
+      color: #f4f0e8;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    /* ANNOUNCEMENT */
+
+    .announcement {
+      background: #b9975b;
+      color: #080808;
+      text-align: center;
+      padding: 9px 15px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      border-bottom: 1px solid #262626;
+      background: rgba(9,9,9,.96);
+    }
+
+    .logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 30px;
+      letter-spacing: 4px;
+      color: #d1b06b;
+    }
+
+    .logo span {
+      display: block;
+      text-align: center;
+      font-family: "Montserrat", sans-serif;
+      font-size: 8px;
+      letter-spacing: 5px;
+      color: #aaa;
+      margin-top: 3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #ddd;
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: .3s;
+    }
+
+    .nav-links a:hover {
+      color: #d1b06b;
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 20px;
+      font-size: 19px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px;
+      position: relative;
+
+      background:
+        radial-gradient(circle at center, #292319 0%, #12110f 30%, #090909 68%);
+    }
+
+    .hero-content {
+      max-width: 900px;
+    }
+
+    .hero-small {
+      color: #c6a563;
+      text-transform: uppercase;
+      letter-spacing: 7px;
+      font-size: 11px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 400;
+      font-size: clamp(55px, 8vw, 105px);
+      line-height: .9;
+      letter-spacing: 3px;
+    }
+
+    .hero h1 em {
+      color: #c9a760;
+      font-weight: 400;
+    }
+
+    .hero p {
+      color: #a8a8a8;
+      max-width: 600px;
+      margin: 30px auto;
+      line-height: 1.9;
+      font-size: 13px;
+    }
+
+    .gold-line {
+      width: 70px;
+      height: 1px;
+      background: #c5a15a;
+      margin: 30px auto;
+    }
+
+    .btn {
+      display: inline-block;
+      border: 1px solid #c5a15a;
+      color: #e4c985;
+      text-decoration: none;
+      padding: 17px 38px;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: .35s;
+    }
+
+    .btn:hover {
+      background: #c5a15a;
+      color: #090909;
+    }
+
+    /* INTRO */
+
+    .intro {
+      text-align: center;
+      padding: 100px 20px 70px;
+    }
+
+    .eyebrow {
+      color: #b99a5c;
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .intro h2,
+    .section-title {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 400;
+      font-size: 46px;
+    }
+
+    .intro p {
+      color: #8d8d8d;
+      max-width: 620px;
+      margin: 20px auto;
+      line-height: 1.8;
+      font-size: 13px;
+    }
+
+    /* PRODUCTS */
+
+    .products {
+      padding: 30px 6% 110px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .product-grid {
+      max-width: 1250px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+
+    .product {
+      cursor: pointer;
+    }
+
+    .product-image {
+      height: 380px;
+      background:
+        radial-gradient(circle at center, #292929, #151515 70%);
+      border: 1px solid #242424;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-image::after {
+      content: "BOTTLE PHOTO";
+      color: #555;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .product-info {
+      padding: 20px 3px;
+      text-align: center;
+    }
+
+    .brand {
+      color: #777;
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .product-name {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: #c6a662;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    /* PROMISE */
+
+    .promise {
+      border-top: 1px solid #222;
+      border-bottom: 1px solid #222;
+      padding: 60px 6%;
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      text-align: center;
+    }
+
+    .promise div {
+      padding: 15px 30px;
+    }
+
+    .promise div:not(:last-child) {
+      border-right: 1px solid #262626;
+    }
+
+    .promise h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 500;
+      font-size: 23px;
+      margin-bottom: 10px;
+    }
+
+    .promise p {
+      color: #777;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    footer .logo {
+      margin-bottom: 25px;
+    }
+
+    footer p {
+      color: #555;
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 900px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      nav {
+        height: 75px;
+      }
+
+      .logo {
+        font-size: 23px;
+      }
+
+      .hero {
+        min-height: 570px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .product-image {
+        height: 300px;
+      }
+
+      .promise {
+        grid-template-columns: 1fr;
+      }
+
+      .promise div:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid #222;
+      }
+
+    }
+
+    @media (max-width: 520px) {
+
+      .announcement {
+        font-size: 8px;
+      }
+
+      .hero h1 {
+        font-size: 55px;
+      }
+
+      .hero p {
+        font-size: 12px;
+      }
+
+      .product-image {
+        height: 230px;
+      }
+
+      .product-name {
+        font-size: 19px;
+      }
+
+      .intro h2,
+      .section-title {
+        font-size: 37px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <div class="announcement">
+    Complimentary shipping on orders over $75
+  </div>
+
+
+  <nav>
+
+    <div class="logo">
+      CASA AURA
+      <span>FRAGRANCES</span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#">Niche</a></li>
+      <li><a href="#">Designer</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+
+    <div class="nav-icons">
+      <span>⌕</span>
+      <span>♢</span>
+    </div>
+
+  </nav>
+
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div class="hero-small">
+        The Art of Fragrance
+      </div>
+
+      <h1>
+        Discover Your<br>
+        <em>Signature.</em>
+      </h1>
+
+      <div class="gold-line"></div>
+
+      <p>
+        Experience extraordinary fragrances without committing to the
+        full bottle. Authentic luxury scents, carefully decanted and
+        delivered directly to you.
+      </p>
+
+      <a href="#shop" class="btn">
+        Explore The Collection
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <section class="intro">
+
+    <div class="eyebrow">
+      Curated For You
+    </div>
+
+    <h2>Luxury Within Reach</h2>
+
+    <p>
+      Explore our hand-selected collection of designer and niche
+      fragrances. Find your next signature scent one decant at a time.
+    </p>
+
+  </section>
+
+
+  <section class="products" id="shop">
+
+    <div class="section-header">
+
+      <div class="eyebrow">
+        The Collection
+      </div>
+
+      <h2 class="section-title">
+        Featured Fragrances
+      </h2>
+
+    </div>
+
+
+    <div class="product-grid">
+
+      <div class="product">
+
+        <div class="product-image"></div>
+
+        <div class="product-info">
+          <div class="brand">Louis Vuitton</div>
+          <div class="product-name">Imagination</div>
+          <div class="price">From $18.00</div>
+        </div>
+
+      </div>
+
+
+      <div class="product">
+
+        <div class="product-image"></div>
+
+        <div class="product-info">
+          <div class="brand">Creed</div>
+          <div class="product-name">Aventus</div>
+          <div class="price">From $16.00</div>
+        </div>
+
+      </div>
+
+
+      <div class="product">
+
+        <div class="product-image"></div>
+
+        <div class="product-info">
+          <div class="brand">Parfums de Marly</div>
+          <div class="product-name">Layton</div>
+          <div class="price">From $14.00</div>
+        </div>
+
+      </div>
+
+
+      <div class="product">
+
+        <div class="product-image"></div>
+
+        <div class="product-info">
+          <div class="brand">Kilian</div>
+          <div class="product-name">Angels' Share</div>
+          <div class="price">From $17.00</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="promise">
+
+    <div>
+      <h3>100% Authentic</h3>
+      <p>
+        Every fragrance is decanted from an authentic
+        retail bottle.
+      </p>
+    </div>
+
+    <div>
+      <h3>Curated Selection</h3>
+      <p>
+        Designer icons and exceptional niche fragrances
+        selected for our collection.
+      </p>
+    </div>
+
+    <div>
+      <h3>Explore Freely</h3>
+      <p>
+        Experience luxury fragrances in multiple sizes
+        before investing in a full bottle.
+      </p>
+    </div>
+
+  </section>
+
+
+  <footer>
+
+    <div class="logo">
+      CASA AURA
+      <span>FRAGRANCES</span>
+    </div>
+
+    <p>
+      © 2026 CASA AURA FRAGRANCES. ALL RIGHTS RESERVED.
+    </p>
+
+  </footer>
+
+</body>
+</html>

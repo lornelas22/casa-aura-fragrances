@@ -487,60 +487,9 @@
     </div>
 
 
-    <div class="product-grid">
-
-      <div class="product">
-
-        <div class="product-image"></div>
-
-        <div class="product-info">
-          <div class="brand">Louis Vuitton</div>
-          <div class="product-name">Imagination</div>
-          <div class="price">From $18.00</div>
-        </div>
-
-      </div>
-
-
-      <div class="product">
-
-        <div class="product-image"></div>
-
-        <div class="product-info">
-          <div class="brand">Creed</div>
-          <div class="product-name">Aventus</div>
-          <div class="price">From $16.00</div>
-        </div>
-
-      </div>
-
-
-      <div class="product">
-
-        <div class="product-image"></div>
-
-        <div class="product-info">
-          <div class="brand">Parfums de Marly</div>
-          <div class="product-name">Layton</div>
-          <div class="price">From $14.00</div>
-        </div>
-
-      </div>
-
-
-      <div class="product">
-
-        <div class="product-image"></div>
-
-        <div class="product-info">
-          <div class="brand">Kilian</div>
-          <div class="product-name">Angels' Share</div>
-          <div class="price">From $17.00</div>
-        </div>
-
-      </div>
-
-    </div>
+    <div class="product-grid" id="product-grid">
+  <div class="product-loading">Loading our collection...</div>
+</div>
 
   </section>
 
@@ -596,6 +545,94 @@
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
   );
+
+
+    const productGrid = document.getElementById("product-grid");
+
+  function escapeHtml(value = "") {
+    return String(value).replace(/[&<>"']/g, function (char) {
+      return {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+      }[char];
+    });
+  }
+
+  async function loadFeaturedProducts() {
+    const { data, error } = await window.supabase
+      .from("products")
+      .select(`
+        id,
+        brand,
+        name,
+        image_url,
+        slug,
+        product_sizes(size_ml, price, inventory)
+      `)
+      .eq("published", true)
+      .order("created_at", { ascending: false })
+      .limit(4);
+
+    if (error) {
+      console.error("Error loading products:", error);
+      productGrid.innerHTML = `
+        <div class="product-loading">
+          Our collection is temporarily unavailable.
+        </div>
+      `;
+      return;
+    }
+
+    if (!data || data.length === 0) {
+      productGrid.innerHTML = `
+        <div class="product-loading">
+          Our collection is coming soon.
+        </div>
+      `;
+      return;
+    }
+
+    productGrid.innerHTML = data.map(product => {
+      const prices = (product.product_sizes || [])
+        .map(size => Number(size.price))
+        .filter(price => Number.isFinite(price));
+
+      const minPrice = prices.length
+        ? Math.min(...prices).toFixed(2)
+        : null;
+
+      const image = product.image_url
+        ? `
+          <img
+            src="${escapeHtml(product.image_url)}"
+            alt="${escapeHtml(product.brand + " " + product.name)}"
+            loading="lazy"
+          >
+        `
+        : "";
+
+      return `
+        <article class="product">
+          <div class="product-image">
+            ${image}
+          </div>
+
+          <div class="product-info">
+            <div class="brand">${escapeHtml(product.brand)}</div>
+            <div class="product-name">${escapeHtml(product.name)}</div>
+            <div class="price">
+              ${minPrice ? `From $${minPrice}` : "View sizes"}
+            </div>
+          </div>
+        </article>
+      `;
+    }).join("");
+  }
+
+  loadFeaturedProducts();
 </script>
 </body>
 </html>

@@ -638,7 +638,7 @@
         : "";
 
       return `
-        <article class="product">
+        <a href="product.html?slug=${encodeURIComponent(product.slug)}" class="product">
           <div class="product-image">
             ${image}
           </div>
@@ -650,7 +650,7 @@
               ${minPrice ? `From $${minPrice}` : "View sizes"}
             </div>
           </div>
-        </article>
+        </a>
       `;
     }).join("");
   }

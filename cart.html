@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart | Casa Aura</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #090909;
+      color: #f4eee4;
+      font-family: "Inter", sans-serif;
+      font-weight: 300;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .header {
+      border-bottom: 1px solid #222;
+      padding: 24px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 26px;
+      letter-spacing: 3px;
+      color: #d8b56a;
+    }
+
+    .back {
+      color: #aaa;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    .back:hover {
+      color: #d8b56a;
+    }
+
+    .cart-page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 70px 25px 120px;
+    }
+
+    .eyebrow {
+      color: #b9934e;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 52px;
+      font-weight: 400;
+      margin: 0 0 50px;
+    }
+
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .cart-items {
+      border-top: 1px solid #292929;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 130px 1fr auto;
+      gap: 25px;
+      align-items: center;
+      padding: 25px 0;
+      border-bottom: 1px solid #292929;
+    }
+
+    .item-image {
+      width: 130px;
+      height: 150px;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(80, 220, 230, 0.12),
+          #151515 70%
+        );
+      border: 1px solid #242424;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 10px;
+      filter:
+        drop-shadow(0 0 10px rgba(80, 220, 230, 0.3));
+    }
+
+    .item-brand {
+      color: #b9934e;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .item-name {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
+      margin-bottom: 7px;
+    }
+
+    .item-size {
+      color: #888;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .quantity button {
+      width: 28px;
+      height: 28px;
+      border: 1px solid #333;
+      background: transparent;
+      color: #aaa;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .quantity button:hover {
+      border-color: #d8b56a;
+      color: #d8b56a;
+    }
+
+    .quantity span {
+      min-width: 20px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .item-right {
+      text-align: right;
+    }
+
+    .item-price {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 23px;
+      margin-bottom: 12px;
+    }
+
+    .remove {
+      border: none;
+      background: none;
+      color: #666;
+      cursor: pointer;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0;
+    }
+
+    .remove:hover {
+      color: #d8b56a;
+    }
+
+    .summary {
+      border: 1px solid #292929;
+      padding: 30px;
+      background: #0d0d0d;
+    }
+
+    .summary-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+      margin-bottom: 25px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      color: #999;
+      font-size: 13px;
+      padding: 10px 0;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #333;
+      margin-top: 15px;
+      padding-top: 20px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
+    }
+
+    .checkout {
+      width: 100%;
+      margin-top: 25px;
+      padding: 16px;
+      border: 1px solid #d8b56a;
+      background: #d8b56a;
+      color: #090909;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .checkout:hover {
+      background: transparent;
+      color: #d8b56a;
+    }
+
+    .continue {
+      display: block;
+      margin-top: 18px;
+      text-align: center;
+      color: #777;
+      font-size: 12px;
+    }
+
+    .continue:hover {
+      color: #d8b56a;
+    }
+
+    .empty {
+      border-top: 1px solid #292929;
+      padding: 70px 20px;
+      text-align: center;
+      color: #888;
+    }
+
+    .empty-title {
+      font-family: "Cormorant Garamond", serif;
+      color: #f4eee4;
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .empty a {
+      display: inline-block;
+      margin-top: 25px;
+      border: 1px solid #d8b56a;
+      padding: 14px 25px;
+      color: #d8b56a;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 800px) {
+      .cart-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+    }
+
+    @media (max-width: 550px) {
+      .header {
+        padding: 20px;
+      }
+
+      .cart-page {
+        padding: 45px 18px 80px;
+      }
+
+      .cart-item {
+        grid-template-columns: 85px 1fr;
+        gap: 15px;
+      }
+
+      .item-image {
+        width: 85px;
+        height: 105px;
+      }
+
+      .item-right {
+        grid-column: 2;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .item-price {
+        margin-bottom: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <a href="index.html" class="logo">CASA AURA</a>
+    <a href="index.html" class="back">← CONTINUE SHOPPING</a>
+  </header>
+
+  <main class="cart-page">
+
+    <div class="eyebrow">Your Selection</div>
+    <h1>Your Cart</h1>
+
+    <div id="cart-content"></div>
+
+  </main>
+
+  <script>
+    const cartContent = document.getElementById("cart-content");
+
+    function getCart() {
+      return JSON.parse(
+        localStorage.getItem("casaAuraCart") || "[]"
+      );
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem(
+        "casaAuraCart",
+        JSON.stringify(cart)
+      );
+    }
+
+    function renderCart() {
+      const cart = getCart();
+
+      if (!cart.length) {
+        cartContent.innerHTML = `
+          <div class="empty">
+            <div class="empty-title">Your cart is empty.</div>
+            <div>Discover a fragrance for your collection.</div>
+            <a href="index.html">Explore Collection</a>
+          </div>
+        `;
+        return;
+      }
+
+      let subtotal = 0;
+
+      cart.forEach(item => {
+        subtotal += Number(item.price) * Number(item.quantity);
+      });
+
+      cartContent.innerHTML = `
+        <div class="cart-layout">
+
+          <div class="cart-items">
+            ${cart.map((item, index) => `
+              <div class="cart-item">
+
+                <div class="item-image">
+                  ${
+                    item.imageUrl
+                      ? `<img
+                          src="${item.imageUrl}"
+                          alt="${item.brand} ${item.name}">
+                        `
+                      : ""
+                  }
+                </div>
+
+                <div>
+                  <div class="item-brand">
+                    ${item.brand}
+                  </div>
+
+                  <div class="item-name">
+                    ${item.name}
+                  </div>
+
+                  <div class="item-size">
+                    ${item.sizeMl}ml
+                  </div>
+
+                  <div class="quantity">
+                    <button
+                      onclick="changeQuantity(${index}, -1)">
+                      −
+                    </button>
+
+                    <span>
+                      ${item.quantity}
+                    </span>
+
+                    <button
+                      onclick="changeQuantity(${index}, 1)">
+                      +
+                    </button>
+                  </div>
+                </div>
+
+                <div class="item-right">
+                  <div class="item-price">
+                    $${(
+                      Number(item.price) *
+                      Number(item.quantity)
+                    ).toFixed(2)}
+                  </div>
+
+                  <button
+                    class="remove"
+                    onclick="removeItem(${index})">
+                    Remove
+                  </button>
+                </div>
+
+              </div>
+            `).join("")}
+          </div>
+
+          <aside class="summary">
+
+            <div class="summary-title">
+              Order Summary
+            </div>
+
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span>$${subtotal.toFixed(2)}</span>
+            </div>
+
+            <div class="summary-row">
+              <span>Shipping</span>
+              <span>Calculated at checkout</span>
+            </div>
+
+            <div class="summary-total">
+              <span>Total</span>
+              <span>$${subtotal.toFixed(2)}</span>
+            </div>
+
+            <button
+              class="checkout"
+              onclick="beginCheckout()">
+              Proceed to Checkout
+            </button>
+
+            <a
+              href="index.html"
+              class="continue">
+              Continue Shopping
+            </a>
+
+          </aside>
+
+        </div>
+      `;
+    }
+
+    function changeQuantity(index, change) {
+      const cart = getCart();
+
+      if (!cart[index]) {
+        return;
+      }
+
+      cart[index].quantity += change;
+
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+
+      saveCart(cart);
+      renderCart();
+    }
+
+    function removeItem(index) {
+      const cart = getCart();
+
+      cart.splice(index, 1);
+
+      saveCart(cart);
+      renderCart();
+    }
+
+    function beginCheckout() {
+      alert(
+        "Checkout will be available soon. Your cart has been saved."
+      );
+    }
+
+    renderCart();
+  </script>
+
+</body>
+</html>

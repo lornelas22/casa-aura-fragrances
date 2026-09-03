@@ -505,11 +505,51 @@
       renderCart();
     }
 
-    function beginCheckout() {
-      alert(
-        "Checkout will be available soon. Your cart has been saved."
+    async function beginCheckout() {
+  const button = document.querySelector(".checkout");
+
+  if (button) {
+    button.disabled = true;
+    button.textContent = "Processing...";
+  }
+
+  try {
+    const cart = getCart();
+
+    const response = await fetch(
+      "/.netlify/functions/create-checkout-session",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(cart)
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok || !data.url) {
+      throw new Error(
+        data.error || "Unable to start checkout."
       );
     }
+
+    window.location.href = data.url;
+  } catch (error) {
+    console.error("Checkout error:", error);
+
+    alert(
+      error.message ||
+      "Something went wrong starting checkout."
+    );
+
+    if (button) {
+      button.disabled = false;
+      button.textContent = "Proceed to Checkout";
+    }
+  }
+}
 
     renderCart();
   </script>

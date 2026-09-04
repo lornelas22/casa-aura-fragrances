@@ -57,8 +57,11 @@ exports.handler = async function (event) {
       );
 
       if (!productResponse.ok) {
-        throw new Error("Unable to verify product.");
-      }
+  const errorText = await productResponse.text();
+  throw new Error(
+    `Supabase product check failed (${productResponse.status}): ${errorText}`
+  );
+}
 
       const products = await productResponse.json();
 

@@ -52,7 +52,6 @@ exports.handler = async function (event) {
         {
           headers: {
             apikey: supabaseKey,
-            Authorization: `Bearer ${supabaseKey}`
           }
         }
       );
@@ -79,7 +78,6 @@ exports.handler = async function (event) {
         {
           headers: {
             apikey: supabaseKey,
-            Authorization: `Bearer ${supabaseKey}`
           }
         }
       );

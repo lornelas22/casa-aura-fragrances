@@ -132,8 +132,6 @@ const stripeEvent = JSON.parse(rawBody);
 const stripeSecretKey = stripeEvent.livemode
   ? liveStripeSecretKey
   : testStripeSecretKey;
-      };
-  };
 
     if (stripeEvent.type !== "checkout.session.completed") {
       return {

@@ -110,12 +110,16 @@ exports.handler = async function (event) {
       }
 
       const priceData = {
-        currency: "usd",
-        unit_amount: Math.round(price * 100),
-        product_data: {
-          name: `${product.brand} ${product.name} — ${sizeMl}mL`
-        }
-      };
+  currency: "usd",
+  unit_amount: Math.round(price * 100),
+  product_data: {
+    name: `${product.brand} ${product.name} — ${sizeMl}mL`,
+    metadata: {
+      product_id: product.id,
+      size_ml: String(sizeMl)
+    }
+  }
+};
 
       if (product.image_url) {
         priceData.product_data.images = [product.image_url];
@@ -162,6 +166,16 @@ exports.handler = async function (event) {
           `line_items[${index}][price_data][product_data][images][0]`,
           item.price_data.product_data.images[0]
         );
+
+        params.append(
+  `line_items[${index}][price_data][product_data][metadata][product_id]`,
+  item.price_data.product_data.metadata.product_id
+);
+
+params.append(
+  `line_items[${index}][price_data][product_data][metadata][size_ml]`,
+  item.price_data.product_data.metadata.size_ml
+);
       }
 
       params.append(

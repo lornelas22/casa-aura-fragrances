@@ -14,21 +14,31 @@ exports.handler = async function (event) {
   }
 
   try {
-    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
-    const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;
+    const liveStripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const testStripeSecretKey = process.env.STRIPE_TEST_SECRET_KEY;
+const liveWebhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+const testWebhookSecret = process.env.STRIPE_TEST_WEBHOOK_SECRET;
+const supabaseSecretKey = process.env.SUPABASE_SECRET_KEY;
 
-    if (!stripeSecretKey) {
-      throw new Error("STRIPE_SECRET_KEY is not configured.");
-    }
+if (!liveStripeSecretKey) {
+  throw new Error("STRIPE_SECRET_KEY is not configured.");
+}
 
-    if (!webhookSecret) {
-      throw new Error("STRIPE_WEBHOOK_SECRET is not configured.");
-    }
+if (!testStripeSecretKey) {
+  throw new Error("STRIPE_TEST_SECRET_KEY is not configured.");
+}
 
-    if (!supabaseSecretKey) {
-      throw new Error("SUPABASE_SECRET_KEY is not configured.");
-    }
+if (!liveWebhookSecret) {
+  throw new Error("STRIPE_WEBHOOK_SECRET is not configured.");
+}
+
+if (!testWebhookSecret) {
+  throw new Error("STRIPE_TEST_WEBHOOK_SECRET is not configured.");
+}
+
+if (!supabaseSecretKey) {
+  throw new Error("SUPABASE_SECRET_KEY is not configured.");
+}
 
     const signature = event.headers["stripe-signature"];
 
@@ -44,43 +54,86 @@ exports.handler = async function (event) {
       : event.body || "";
 
     const elements = signature.split(",");
-    const timestampElement = elements.find((item) =>
-      item.startsWith("t=")
-    );
-    const signatureElement = elements.find((item) =>
-      item.startsWith("v1=")
-    );
 
-    if (!timestampElement || !signatureElement) {
-      return {
-        statusCode: 400,
-        body: "Invalid Stripe signature."
-      };
-    }
+const timestampElement = elements.find((item) =>
+  item.startsWith("t=")
+);
 
-    const timestamp = timestampElement.substring(2);
-    const receivedSignature = signatureElement.substring(3);
+const signatureElements = elements
+  .filter((item) => item.startsWith("v1="))
+  .map((item) => item.substring(3));
 
-    const signedPayload = `${timestamp}.${rawBody}`;
+if (!timestampElement || signatureElements.length === 0) {
+  return {
+    statusCode: 400,
+    body: "Invalid Stripe signature."
+  };
+}
 
-    const expectedSignature = crypto
-      .createHmac("sha256", webhookSecret)
-      .update(signedPayload, "utf8")
-      .digest("hex");
+const timestamp = Number(timestampElement.substring(2));
 
-    const signaturesMatch = crypto.timingSafeEqual(
-      Buffer.from(expectedSignature, "utf8"),
+if (!Number.isInteger(timestamp)) {
+  return {
+    statusCode: 400,
+    body: "Invalid Stripe timestamp."
+  };
+}
+
+const timestampAge = Math.abs(
+  Math.floor(Date.now() / 1000) - timestamp
+);
+
+if (timestampAge > 300) {
+  return {
+    statusCode: 400,
+    body: "Expired Stripe signature."
+  };
+}
+
+const signedPayload = `${timestamp}.${rawBody}`;
+
+const expectedLiveSignature = crypto
+  .createHmac("sha256", liveWebhookSecret)
+  .update(signedPayload, "utf8")
+  .digest("hex");
+
+const expectedTestSignature = crypto
+  .createHmac("sha256", testWebhookSecret)
+  .update(signedPayload, "utf8")
+  .digest("hex");
+
+const signaturesMatchLive = signatureElements.some(
+  (receivedSignature) =>
+    receivedSignature.length === expectedLiveSignature.length &&
+    crypto.timingSafeEqual(
+      Buffer.from(expectedLiveSignature, "utf8"),
       Buffer.from(receivedSignature, "utf8")
-    );
+    )
+);
 
-    if (!signaturesMatch) {
-      return {
-        statusCode: 400,
-        body: "Invalid Stripe signature."
+const signaturesMatchTest = signatureElements.some(
+  (receivedSignature) =>
+    receivedSignature.length === expectedTestSignature.length &&
+    crypto.timingSafeEqual(
+      Buffer.from(expectedTestSignature, "utf8"),
+      Buffer.from(receivedSignature, "utf8")
+    )
+);
+
+if (!signaturesMatchLive && !signaturesMatchTest) {
+  return {
+    statusCode: 400,
+    body: "Invalid Stripe signature."
+  };
+}
+
+const stripeEvent = JSON.parse(rawBody);
+
+const stripeSecretKey = stripeEvent.livemode
+  ? liveStripeSecretKey
+  : testStripeSecretKey;
       };
-    }
-
-    const stripeEvent = JSON.parse(rawBody);
+  };
 
     if (stripeEvent.type !== "checkout.session.completed") {
       return {

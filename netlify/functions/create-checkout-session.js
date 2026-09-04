@@ -18,11 +18,20 @@ exports.handler = async function (event) {
       };
     }
 
-    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+    const isTestMode =
+  event.queryStringParameters?.mode === "test";
 
-    if (!stripeSecretKey) {
-      throw new Error("STRIPE_SECRET_KEY is not configured.");
-    }
+const stripeSecretKey = isTestMode
+  ? process.env.STRIPE_TEST_SECRET_KEY
+  : process.env.STRIPE_SECRET_KEY;
+
+if (!stripeSecretKey) {
+  throw new Error(
+    isTestMode
+      ? "STRIPE_TEST_SECRET_KEY is not configured."
+      : "STRIPE_SECRET_KEY is not configured."
+  );
+}
 
     const supabaseUrl = "https://tmxpuurukwgeckpgfdhm.supabase.co";
     const supabaseKey =

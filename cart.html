@@ -514,10 +514,17 @@
   }
 
   try {
-    const cart = getCart();
+  const cart = getCart();
 
-    const response = await fetch(
-      "/.netlify/functions/create-checkout-session",
+  const isTestMode =
+    new URLSearchParams(window.location.search).get("mode") === "test";
+
+  const checkoutUrl = isTestMode
+    ? "/.netlify/functions/create-checkout-session?mode=test"
+    : "/.netlify/functions/create-checkout-session";
+
+  const response = await fetch(
+    checkoutUrl,
       {
         method: "POST",
         headers: {

@@ -977,6 +977,302 @@ footer p {
     padding: 55px 20px;
   }
 }
+    /* =========================================
+   CASA AURA — HERO BOTTLE EXPERIENCE
+   ========================================= */
+
+.hero {
+  position: relative;
+  min-height: 720px;
+  height: calc(100vh - 110px);
+  max-height: 900px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(200,164,93,.10) 0%, transparent 32%),
+    radial-gradient(circle at 15% 50%, rgba(200,164,93,.06) 0%, transparent 28%),
+    radial-gradient(circle at 85% 50%, rgba(200,164,93,.06) 0%, transparent 28%),
+    #080808;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 5;
+  width: min(620px, 90%);
+  text-align: center;
+  margin: 0 auto;
+}
+
+.hero-small {
+  color: var(--gold-light);
+  font-size: 11px;
+  letter-spacing: .38em;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  margin: 0;
+  color: var(--cream);
+  font-size: clamp(58px, 7vw, 105px);
+  line-height: .92;
+  letter-spacing: -.045em;
+  font-weight: 500;
+}
+
+.hero h1 em {
+  color: var(--gold-light);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.hero .gold-line {
+  width: 70px;
+  height: 1px;
+  margin: 30px auto 26px;
+  background: var(--gold);
+}
+
+.hero-content p {
+  max-width: 500px;
+  margin: 0 auto 32px;
+  color: #aaa59b;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.hero .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 210px;
+  padding: 16px 28px;
+  border: 1px solid rgba(226,200,134,.65);
+  color: var(--cream);
+  background: rgba(200,164,93,.08);
+  text-decoration: none;
+  letter-spacing: .16em;
+  font-size: 10px;
+  font-weight: 600;
+  transition: all .3s ease;
+}
+
+.hero .btn:hover {
+  background: var(--gold);
+  color: #080808;
+  border-color: var(--gold);
+}
+
+.hero-bottle {
+  position: absolute;
+  z-index: 3;
+  width: 290px;
+  height: 560px;
+  pointer-events: none;
+}
+
+.hero-bottle-left {
+  left: 2%;
+  top: 50%;
+  transform: translateY(-50%) rotate(-7deg);
+}
+
+.hero-bottle-right {
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%) rotate(7deg);
+}
+
+.hero-bottle-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-bottle-frame::after {
+  content: "";
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  bottom: 7%;
+  height: 35px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.8);
+  filter: blur(18px);
+}
+
+.hero-bottle img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 35px 35px rgba(0,0,0,.75))
+    drop-shadow(0 0 28px rgba(200,164,93,.12));
+  transition: transform .5s ease;
+}
+
+.hero-bottle-left img {
+  transform: scale(1.08);
+}
+
+.hero-bottle-right img {
+  transform: scale(1.08);
+}
+
+.hero-glow {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: rgba(200,164,93,.07);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.hero-glow-left {
+  left: 0;
+  top: 35%;
+}
+
+.hero-glow-right {
+  right: 0;
+  top: 35%;
+}
+
+.hero-scroll {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 55px;
+  color: #77736b;
+  font-size: 8px;
+  letter-spacing: .28em;
+}
+
+.hero-scroll span {
+  display: block;
+  width: 1px;
+  height: 26px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+
+.hero-bottom {
+  position: absolute;
+  z-index: 6;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  border-top: 1px solid rgba(200,164,93,.12);
+  background: rgba(5,5,5,.45);
+  backdrop-filter: blur(8px);
+  color: #77736b;
+  font-size: 8px;
+  letter-spacing: .25em;
+}
+
+.hero-bottom i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: .7;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .hero {
+    min-height: 720px;
+    height: auto;
+    padding: 90px 20px 100px;
+  }
+
+  .hero-content {
+    width: 100%;
+  }
+
+  .hero h1 {
+    font-size: clamp(52px, 14vw, 78px);
+  }
+
+  .hero-bottle {
+    width: 190px;
+    height: 360px;
+    opacity: .42;
+  }
+
+  .hero-bottle-left {
+    left: -75px;
+    top: 12%;
+    transform: rotate(-10deg);
+  }
+
+  .hero-bottle-right {
+    right: -75px;
+    top: 48%;
+    transform: rotate(10deg);
+  }
+
+  .hero-bottom {
+    gap: 10px;
+    padding: 0 12px;
+  }
+
+  .hero-bottom span {
+    letter-spacing: .14em;
+    text-align: center;
+  }
+
+  .hero-bottom i {
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 680px;
+  }
+
+  .hero-bottle {
+    width: 155px;
+    height: 300px;
+    opacity: .30;
+  }
+
+  .hero-bottle-left {
+    left: -65px;
+  }
+
+  .hero-bottle-right {
+    right: -65px;
+  }
+
+  .hero-content p {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .hero-scroll {
+    margin-top: 38px;
+  }
+
+  .hero-bottom {
+    height: 54px;
+    font-size: 7px;
+  }
+}
   </style>
 </head>
 
@@ -1012,33 +1308,52 @@ footer p {
 
 
   <section class="hero">
+  <div class="hero-glow hero-glow-left"></div>
+  <div class="hero-glow hero-glow-right"></div>
 
-    <div class="hero-content">
-
-      <div class="hero-small">
-        The Art of Fragrance
-      </div>
-
-      <h1>
-        Discover Your<br>
-        <em>Signature.</em>
-      </h1>
-
-      <div class="gold-line"></div>
-
-      <p>
-        Experience extraordinary fragrances without committing to the
-        full bottle. Authentic luxury scents, carefully decanted and
-        delivered directly to you.
-      </p>
-
-      <a href="#shop" class="btn">
-        Explore The Collection
-      </a>
-
+  <div class="hero-bottle hero-bottle-left">
+    <div class="hero-bottle-frame">
+      <img id="hero-bottle-left" src="" alt="">
     </div>
+  </div>
 
-  </section>
+  <div class="hero-content">
+    <div class="hero-small">THE ART OF FRAGRANCE</div>
+
+    <h1>
+      Discover Your<br>
+      <em>Signature.</em>
+    </h1>
+
+    <div class="gold-line"></div>
+
+    <p>
+      Experience extraordinary fragrances without committing to the full bottle.
+      Authentic luxury scents, carefully decanted and delivered directly to you.
+    </p>
+
+    <a href="#shop" class="btn">Explore The Collection</a>
+
+    <div class="hero-scroll">
+      <span></span>
+      SCROLL TO DISCOVER
+    </div>
+  </div>
+
+  <div class="hero-bottle hero-bottle-right">
+    <div class="hero-bottle-frame">
+      <img id="hero-bottle-right" src="" alt="">
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <span>AUTHENTIC FRAGRANCES</span>
+    <i></i>
+    <span>PREMIUM DECANTS</span>
+    <i></i>
+    <span>CURATED COLLECTION</span>
+  </div>
+</section>
 
 
   <section class="intro">

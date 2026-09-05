@@ -27,6 +27,7 @@
       background: #090909;
       color: #f4f0e8;
       font-family: "Montserrat", sans-serif;
+letter-spacing: 0.01em;
     }
 
     /* ANNOUNCEMENT */
@@ -415,6 +416,863 @@
 
     }
 
+    /* =========================================
+   CASA AURA — LUXURY DESIGN OVERLAY
+   ========================================= */
+
+:root {
+  --black: #080808;
+  --deep-black: #050505;
+  --charcoal: #11110f;
+  --charcoal-2: #171613;
+  --gold: #c8a45d;
+  --gold-light: #e2c886;
+  --cream: #f3eee4;
+  --muted: #8c887f;
+  --line: rgba(200,164,93,.22);
+}
+
+/* GLOBAL */
+body {
+  background:
+    radial-gradient(circle at 50% -10%, rgba(200,164,93,.07), transparent 34%),
+    var(--black);
+  color: var(--cream);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+}
+
+.product {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ANNOUNCEMENT */
+.announcement {
+  background: #c3a15d;
+  color: #090909;
+  padding: 10px 15px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+/* NAVIGATION */
+nav {
+  height: 96px;
+  padding: 0 6%;
+  background: rgba(7,7,7,.94);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(14px);
+  position: relative;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 32px;
+  letter-spacing: 5px;
+  color: var(--gold-light);
+  line-height: .9;
+}
+
+.logo span {
+  color: #88837a;
+  font-size: 7px;
+  letter-spacing: 6px;
+  margin-top: 7px;
+}
+
+.nav-links {
+  gap: 38px;
+}
+
+.nav-links a {
+  color: #aaa69d;
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  position: relative;
+  transition: color .3s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -9px;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width .3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--gold-light);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-icons {
+  color: #d8d1c4;
+  gap: 22px;
+}
+
+/* HERO */
+.hero {
+  min-height: 720px;
+  padding: 110px 20px;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse at 50% 45%,
+      rgba(155,124,66,.16) 0%,
+      rgba(65,52,32,.10) 25%,
+      transparent 58%
+    ),
+    linear-gradient(180deg, #0a0a09 0%, #0c0b09 55%, #070707 100%);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255,255,255,.025) 50%,
+      transparent 100%
+    );
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 650px;
+  height: 650px;
+  border: 1px solid rgba(200,164,93,.07);
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 950px;
+}
+
+.hero-small {
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 8px;
+  margin-bottom: 28px;
+}
+
+.hero h1 {
+  color: #f1eadc;
+  font-size: clamp(62px, 9vw, 118px);
+  line-height: .86;
+  letter-spacing: 2px;
+  text-shadow: 0 10px 50px rgba(0,0,0,.55);
+}
+
+.hero h1 em {
+  color: var(--gold-light);
+  font-style: italic;
+}
+
+.hero p {
+  color: #98938a;
+  max-width: 570px;
+  margin: 36px auto;
+  line-height: 2;
+  font-size: 12px;
+}
+
+.gold-line {
+  width: 90px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold),
+    transparent
+  );
+  margin: 34px auto;
+}
+
+.btn {
+  border: 1px solid rgba(200,164,93,.75);
+  color: var(--gold-light);
+  background: rgba(200,164,93,.025);
+  padding: 18px 42px;
+  font-size: 9px;
+  letter-spacing: 3.5px;
+  transition: all .35s ease;
+}
+
+.btn:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #080808;
+  box-shadow: 0 10px 35px rgba(200,164,93,.15);
+}
+
+/* INTRO */
+.intro {
+  padding: 120px 20px 80px;
+  background:
+    linear-gradient(180deg,#070707,#0b0b0a);
+}
+
+.eyebrow {
+  color: var(--gold);
+  font-size: 9px;
+  letter-spacing: 6px;
+  font-weight: 500;
+}
+
+.intro h2,
+.section-title {
+  color: #eee7db;
+  font-size: 52px;
+  letter-spacing: .5px;
+}
+
+.intro p {
+  color: #77736c;
+  max-width: 580px;
+  font-size: 12px;
+  line-height: 2;
+}
+
+/* PRODUCTS */
+.products {
+  padding: 45px 6% 125px;
+  background: #090909;
+}
+
+.section-header {
+  margin-bottom: 60px;
+}
+
+.product-grid {
+  max-width: 1320px;
+  gap: 28px;
+}
+
+/* PRODUCT CARD */
+.product {
+  display: block;
+  transition: transform .4s ease;
+}
+
+.product:hover {
+  transform: translateY(-6px);
+}
+
+.product-image {
+  height: 410px;
+  background:
+    radial-gradient(
+      circle at 50% 55%,
+      rgba(190,155,88,.11),
+      transparent 45%
+    ),
+    linear-gradient(145deg,#171715,#0d0d0c);
+  border: 1px solid rgba(255,255,255,.075);
+  transition:
+    border-color .4s ease,
+    box-shadow .4s ease,
+    background .4s ease;
+}
+
+.product:hover .product-image {
+  border-color: rgba(200,164,93,.4);
+  background:
+    radial-gradient(
+      circle at 50% 55%,
+      rgba(200,164,93,.16),
+      transparent 48%
+    ),
+    linear-gradient(145deg,#1a1916,#0c0c0b);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.35),
+    inset 0 0 40px rgba(200,164,93,.025);
+}
+
+.product-image::before {
+  width: 75%;
+  height: 75%;
+  background:
+    radial-gradient(
+      circle,
+      rgba(200,164,93,.18) 0%,
+      rgba(200,164,93,.07) 35%,
+      transparent 70%
+    );
+  filter: blur(24px);
+}
+
+.product-image::after {
+  color: #3d3a35;
+  font-size: 16px;
+  letter-spacing: 4px;
+}
+
+.product-image img {
+  padding: 20px;
+  filter:
+    drop-shadow(0 18px 20px rgba(0,0,0,.65))
+    drop-shadow(0 0 24px rgba(200,164,93,.12));
+  transition: transform .5s ease, filter .5s ease;
+}
+
+.product:hover .product-image img {
+  transform: scale(1.035);
+  filter:
+    drop-shadow(0 22px 24px rgba(0,0,0,.7))
+    drop-shadow(0 0 30px rgba(200,164,93,.18));
+}
+
+.product-info {
+  padding: 22px 5px 12px;
+}
+
+.brand {
+  color: #77736b;
+  font-size: 8px;
+  letter-spacing: 3.5px;
+  margin-bottom: 9px;
+}
+
+.product-name {
+  color: #e9e1d3;
+  font-size: 25px;
+  line-height: 1.05;
+  transition: color .3s ease;
+}
+
+.product:hover .product-name {
+  color: var(--gold-light);
+}
+
+.price {
+  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  margin-top: 10px;
+}
+
+/* PROMISE / BRAND VALUES */
+.promise {
+  padding: 75px 6%;
+  background:
+    linear-gradient(
+      180deg,
+      #0b0b0a,
+      #10100e,
+      #0b0b0a
+    );
+  border-top: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.promise div {
+  padding: 18px 35px;
+}
+
+.promise div:not(:last-child) {
+  border-right: 1px solid rgba(200,164,93,.14);
+}
+
+.promise h3 {
+  color: #e7dfd1;
+  font-size: 24px;
+}
+
+.promise p {
+  color: #77736c;
+  font-size: 10px;
+  line-height: 1.9;
+  max-width: 250px;
+  margin: auto;
+}
+
+/* FOOTER */
+footer {
+  padding: 85px 20px 55px;
+  background: #050505;
+  border-top: 1px solid rgba(255,255,255,.05);
+}
+
+footer .logo {
+  color: var(--gold);
+  margin-bottom: 28px;
+}
+
+footer p {
+  color: #55514b;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+
+  nav {
+    height: 78px;
+    padding: 0 5%;
+  }
+
+  .logo {
+    font-size: 25px;
+  }
+
+  .logo span {
+    font-size: 6px;
+    letter-spacing: 5px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero {
+    min-height: 620px;
+    padding: 90px 20px;
+  }
+
+  .hero::after {
+    width: 480px;
+    height: 480px;
+  }
+
+  .hero h1 {
+    font-size: clamp(56px, 13vw, 88px);
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2,1fr);
+    gap: 18px;
+  }
+
+  .product-image {
+    height: 330px;
+  }
+
+  .promise {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .promise div:not(:last-child) {
+    border-right: none;
+    border-bottom: 1px solid rgba(200,164,93,.12);
+    padding-bottom: 28px;
+  }
+}
+
+@media (max-width: 520px) {
+
+  .announcement {
+    padding: 9px 10px;
+    font-size: 7px;
+    letter-spacing: 2px;
+  }
+
+  nav {
+    padding: 0 20px;
+  }
+
+  .nav-icons {
+    gap: 14px;
+  }
+
+  .hero {
+    min-height: 570px;
+    padding: 80px 18px;
+  }
+
+  .hero-small {
+    font-size: 8px;
+    letter-spacing: 5px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-size: 56px;
+    line-height: .9;
+  }
+
+  .hero p {
+    font-size: 11px;
+    line-height: 1.9;
+    margin: 28px auto;
+  }
+
+  .btn {
+    padding: 16px 28px;
+    font-size: 8px;
+  }
+
+  .intro {
+    padding: 90px 20px 55px;
+  }
+
+  .intro h2,
+  .section-title {
+    font-size: 40px;
+  }
+
+  .products {
+    padding: 30px 18px 90px;
+  }
+
+  .section-header {
+    margin-bottom: 38px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+  }
+
+  .product-image {
+    height: 245px;
+  }
+
+  .product-image img {
+    padding: 8px;
+  }
+
+  .product-info {
+    padding: 16px 2px 10px;
+  }
+
+  .brand {
+    font-size: 7px;
+    letter-spacing: 2.5px;
+  }
+
+  .product-name {
+    font-size: 19px;
+  }
+
+  .price {
+    font-size: 9px;
+  }
+
+  .promise {
+    padding: 55px 20px;
+  }
+}
+    /* =========================================
+   CASA AURA — HERO BOTTLE EXPERIENCE
+   ========================================= */
+
+.hero {
+  position: relative;
+  min-height: 720px;
+  height: calc(100vh - 110px);
+  max-height: 900px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(200,164,93,.10) 0%, transparent 32%),
+    radial-gradient(circle at 15% 50%, rgba(200,164,93,.06) 0%, transparent 28%),
+    radial-gradient(circle at 85% 50%, rgba(200,164,93,.06) 0%, transparent 28%),
+    #080808;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 5;
+  width: min(620px, 90%);
+  text-align: center;
+  margin: 0 auto;
+}
+
+.hero-small {
+  color: var(--gold-light);
+  font-size: 11px;
+  letter-spacing: .38em;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  margin: 0;
+  color: var(--cream);
+  font-size: clamp(58px, 7vw, 105px);
+  line-height: .92;
+  letter-spacing: -.045em;
+  font-weight: 500;
+}
+
+.hero h1 em {
+  color: var(--gold-light);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.hero .gold-line {
+  width: 70px;
+  height: 1px;
+  margin: 30px auto 26px;
+  background: var(--gold);
+}
+
+.hero-content p {
+  max-width: 500px;
+  margin: 0 auto 32px;
+  color: #aaa59b;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.hero .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 210px;
+  padding: 16px 28px;
+  border: 1px solid rgba(226,200,134,.65);
+  color: var(--cream);
+  background: rgba(200,164,93,.08);
+  text-decoration: none;
+  letter-spacing: .16em;
+  font-size: 10px;
+  font-weight: 600;
+  transition: all .3s ease;
+}
+
+.hero .btn:hover {
+  background: var(--gold);
+  color: #080808;
+  border-color: var(--gold);
+}
+
+.hero-bottle {
+  position: absolute;
+  z-index: 3;
+  width: 420px;
+  height: 680px;
+  pointer-events: none;
+}
+
+.hero-bottle-left {
+  left: 2%;
+  top: 50%;
+  transform: translateY(-50%) rotate(-7deg);
+}
+
+.hero-bottle-right {
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%) rotate(7deg);
+}
+
+.hero-bottle-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-bottle-frame::after {
+  content: "";
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  bottom: 7%;
+  height: 35px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.8);
+  filter: blur(18px);
+}
+
+.hero-bottle img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 35px 35px rgba(0,0,0,.75))
+    drop-shadow(0 0 28px rgba(200,164,93,.12));
+  transition: transform .5s ease;
+}
+
+.hero-bottle-left img {
+  transform: scale(1.08);
+}
+
+.hero-bottle-right img {
+  transform: scale(1.08);
+}
+
+.hero-glow {
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: rgba(200,164,93,.07);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.hero-glow-left {
+  left: 0;
+  top: 35%;
+}
+
+.hero-glow-right {
+  right: 0;
+  top: 35%;
+}
+
+.hero-scroll {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 55px;
+  color: #77736b;
+  font-size: 8px;
+  letter-spacing: .28em;
+}
+
+.hero-scroll span {
+  display: block;
+  width: 1px;
+  height: 26px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+
+.hero-bottom {
+  position: absolute;
+  z-index: 6;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  border-top: 1px solid rgba(200,164,93,.12);
+  background: rgba(5,5,5,.45);
+  backdrop-filter: blur(8px);
+  color: #77736b;
+  font-size: 8px;
+  letter-spacing: .25em;
+}
+
+.hero-bottom i {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--gold);
+  opacity: .7;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .hero {
+    min-height: 720px;
+    height: auto;
+    padding: 90px 20px 100px;
+  }
+
+  .hero-content {
+    width: 100%;
+  }
+
+  .hero h1 {
+    font-size: clamp(52px, 14vw, 78px);
+  }
+
+  .hero-bottle {
+    width: 190px;
+    height: 360px;
+    opacity: .42;
+  }
+
+  .hero-bottle-left {
+    left: -75px;
+    top: 12%;
+    transform: rotate(-10deg);
+  }
+
+  .hero-bottle-right {
+    right: -75px;
+    top: 48%;
+    transform: rotate(10deg);
+  }
+
+  .hero-bottom {
+    gap: 10px;
+    padding: 0 12px;
+  }
+
+  .hero-bottom span {
+    letter-spacing: .14em;
+    text-align: center;
+  }
+
+  .hero-bottom i {
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 680px;
+  }
+
+  .hero-bottle {
+    width: 155px;
+    height: 300px;
+    opacity: .30;
+  }
+
+  .hero-bottle-left {
+    left: -65px;
+  }
+
+  .hero-bottle-right {
+    right: -65px;
+  }
+
+  .hero-content p {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .hero-scroll {
+    margin-top: 38px;
+  }
+
+  .hero-bottom {
+    height: 54px;
+    font-size: 7px;
+  }
+}
   </style>
 </head>
 
@@ -450,33 +1308,52 @@
 
 
   <section class="hero">
+  <div class="hero-glow hero-glow-left"></div>
+  <div class="hero-glow hero-glow-right"></div>
 
-    <div class="hero-content">
-
-      <div class="hero-small">
-        The Art of Fragrance
-      </div>
-
-      <h1>
-        Discover Your<br>
-        <em>Signature.</em>
-      </h1>
-
-      <div class="gold-line"></div>
-
-      <p>
-        Experience extraordinary fragrances without committing to the
-        full bottle. Authentic luxury scents, carefully decanted and
-        delivered directly to you.
-      </p>
-
-      <a href="#shop" class="btn">
-        Explore The Collection
-      </a>
-
+  <div class="hero-bottle hero-bottle-left">
+    <div class="hero-bottle-frame">
+      <img id="hero-bottle-left" src="" alt="">
     </div>
+  </div>
 
-  </section>
+  <div class="hero-content">
+    <div class="hero-small">THE ART OF FRAGRANCE</div>
+
+    <h1>
+      Discover Your<br>
+      <em>Signature.</em>
+    </h1>
+
+    <div class="gold-line"></div>
+
+    <p>
+      Experience extraordinary fragrances without committing to the full bottle.
+      Authentic luxury scents, carefully decanted and delivered directly to you.
+    </p>
+
+    <a href="#shop" class="btn">Explore The Collection</a>
+
+    <div class="hero-scroll">
+      <span></span>
+      SCROLL TO DISCOVER
+    </div>
+  </div>
+
+  <div class="hero-bottle hero-bottle-right">
+    <div class="hero-bottle-frame">
+      <img id="hero-bottle-right" src="" alt="">
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <span>AUTHENTIC FRAGRANCES</span>
+    <i></i>
+    <span>PREMIUM DECANTS</span>
+    <i></i>
+    <span>CURATED COLLECTION</span>
+  </div>
+</section>
 
 
   <section class="intro">
@@ -617,7 +1494,23 @@
       `;
       return;
     }
+    // Populate the hero with real fragrance bottles
+    const heroProducts = data
+      .filter(product => product.image_url)
+      .slice(0, 2);
 
+    const heroLeft = document.getElementById("hero-bottle-left");
+    const heroRight = document.getElementById("hero-bottle-right");
+
+    if (heroLeft && heroProducts[0]) {
+      heroLeft.src = heroProducts[0].image_url;
+      heroLeft.alt = `${heroProducts[0].brand} ${heroProducts[0].name}`;
+    }
+
+    if (heroRight && heroProducts[1]) {
+      heroRight.src = heroProducts[1].image_url;
+      heroRight.alt = `${heroProducts[1].brand} ${heroProducts[1].name}`;
+    }
     productGrid.innerHTML = data.map(product => {
       const prices = (product.product_sizes || [])
         .map(size => Number(size.price))

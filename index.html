@@ -1494,7 +1494,23 @@ footer p {
       `;
       return;
     }
+    // Populate the hero with real fragrance bottles
+    const heroProducts = data
+      .filter(product => product.image_url)
+      .slice(0, 2);
 
+    const heroLeft = document.getElementById("hero-bottle-left");
+    const heroRight = document.getElementById("hero-bottle-right");
+
+    if (heroLeft && heroProducts[0]) {
+      heroLeft.src = heroProducts[0].image_url;
+      heroLeft.alt = `${heroProducts[0].brand} ${heroProducts[0].name}`;
+    }
+
+    if (heroRight && heroProducts[1]) {
+      heroRight.src = heroProducts[1].image_url;
+      heroRight.alt = `${heroProducts[1].brand} ${heroProducts[1].name}`;
+    }
     productGrid.innerHTML = data.map(product => {
       const prices = (product.product_sizes || [])
         .map(size => Number(size.price))

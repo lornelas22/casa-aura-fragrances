@@ -634,8 +634,39 @@ nav {
 }
 
 .nav-icons {
-  color: #d8d1c4;
-  gap: 22px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  color: var(--cream);
+}
+
+.nav-search {
+  opacity: .75;
+  font-size: 15px;
+}
+
+.cart-link {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--cream);
+  text-decoration: none;
+  transition: color .3s ease;
+}
+
+.cart-link:hover {
+  color: var(--gold-light);
+}
+
+.cart-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.cart-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  font-weight: 600;
 }
 
 /* HERO */
@@ -1425,12 +1456,14 @@ rgba(255,255,255,.05) 65%
       <li><a href="#">About</a></li>
     </ul>
 
-    <span>⌕</span>
-<a href="cart.html" aria-label="Shopping cart">♢</a>
-      <span>♢</span>
-    </div>
+<div class="nav-icons">
+  <span class="nav-search">⌕</span>
 
-  </nav>
+  <a href="cart.html" class="cart-link" aria-label="Shopping cart">
+    <span class="cart-icon">♢</span>
+    <span class="cart-label">CART</span>
+  </a>
+</div>
 
 
   <section class="hero">

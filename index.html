@@ -1493,6 +1493,61 @@ footer {
 .product-image img {
   padding: 18px;
 }
+
+    /* =========================================
+   CASA AURA — BENEFITS STRIP
+   ========================================= */
+
+.promise {
+  width: 100%;
+  padding: 70px 5%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  background: #0b0b0a;
+  border-top: 1px solid rgba(200,164,93,.14);
+  border-bottom: 1px solid rgba(200,164,93,.14);
+}
+
+.promise > div {
+  padding: 8px 45px;
+}
+
+.promise > div:not(:last-child) {
+  border-right: 1px solid rgba(200,164,93,.14);
+}
+
+.promise h3 {
+  margin: 0 0 14px;
+  color: #e2c886;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.promise p {
+  max-width: 260px;
+  margin: 0 auto;
+  color: #77736b;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+@media (max-width: 700px) {
+  .promise {
+    grid-template-columns: 1fr;
+    padding: 45px 24px;
+  }
+
+  .promise > div {
+    padding: 25px 10px;
+  }
+
+  .promise > div:not(:last-child) {
+    border-right: none;
+    border-bottom: 1px solid rgba(200,164,93,.14);
+  }
+}
   </style>
 </head>
 

@@ -1430,6 +1430,61 @@ rgba(255,255,255,.05) 65%
     font-size: 7px;
   }
 }
+    /* =========================================
+   CASA AURA — HOMEPAGE WIDTH FIX
+   ========================================= */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+nav,
+.hero,
+.intro,
+.featured,
+.shop-section,
+.promise,
+footer {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-content,
+.intro-inner,
+.featured-inner,
+.shop-inner,
+.promise-inner,
+.footer-inner {
+  max-width: 1400px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.product-grid {
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 </head>
 
